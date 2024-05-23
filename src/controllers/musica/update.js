@@ -1,4 +1,4 @@
-import musicaoModel from "../../models/musicaoModel.js"
+import musicaoModel from "../../models/musicaModel.js"
 
 const update = async (req, res) => {
     try{
