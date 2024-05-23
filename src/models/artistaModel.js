@@ -25,7 +25,7 @@ const artistaSchema = z.object({
 });
 
 const validateArtistaToCreate = (artista) => {
-  const partialArtistaSchema = artistaSchema.omit({ id: true });
+  const partialArtistaSchema = artistaSchema.partial({ id: true });
   return partialArtistaSchema.safeParse(artista);
 };
 
