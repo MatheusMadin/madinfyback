@@ -29,7 +29,7 @@ const musicaSchema = z.object({
 });
 
 const validateMusicaToCreate = (musica) => {
-    const partialmusicaSchema = musicaSchema.partial();
+    const partialmusicaSchema = musicaSchema.partial({id: true})
     return partialmusicaSchema.safeParse(musica)
 }
 
