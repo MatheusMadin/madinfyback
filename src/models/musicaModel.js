@@ -16,7 +16,9 @@ const musicaSchema = z.object({
       })
       .url({message: 'Url do avatar inválida.'})
       .max(1000, {message: 'O avatar deve ter no máximo 1000 caracteres.'}),
-    artista: z.array(z.number()) // Array de IDs de artistas
+    artista: z.array(z.number()).nonempty({
+        message: 'O campo artista é obrigatório e deve conter pelo menos um ID de artista.'
+    })
 })
 
 const validateMusicaToCreate = (musica) => {
