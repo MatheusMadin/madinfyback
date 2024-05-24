@@ -29,6 +29,6 @@ model musica {
   id         Int       @id @default(autoincrement())
   name       String    @db.VarChar(250)
   avatar     String    @db.Text
-  artistas   artista[] 
+  artista   artista[] 
 }
 
