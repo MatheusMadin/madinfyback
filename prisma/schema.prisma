@@ -3,7 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
+  //provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -15,18 +16,16 @@ model usuario {
 }
 
 model artista {
-  id      Int      @id @default(autoincrement())
-  name    String   @db.VarChar(250)
-  avatar  String   @db.Text
-  musicas musica[] @relation("artistatomusica")
+  id                        Int      @id @default(autoincrement())
+  name                      String   @db.VarChar(250)
+  avatar                    String   @db.Text
+  musicas                   musica[] @relation("artistatomusica")
 }
 
 model musica {
-  id        Int      @id @default(autoincrement())
-  name      String   @db.VarChar(250)
-  avatar    String   @db.Text
-  artistaId Int?     @map("artistaID")
-  artista   artista? @relation("artistatomusica", fields: [artistaId], references: [id], onUpdate: Restrict)
-
-  @@index([artistaId], map: "musica_artistaID_fkey")
+  id                         Int       @id @default(autoincrement())
+  name                       String    @db.VarChar(250)
+  avatar                     String    @db.Text
+  artista                    artista?  @relation("artistatomusica", fields: [artistaId], references: [id], onUpdate: Restrict)
+  artistaId                  Int?      @map("artistaID")
 }
