@@ -4,7 +4,7 @@ import zodErrorFormat from "../../helpers/zodErrorFormat.js"
 const create = async (req, res) => {
     try{
         const musica = req.body
-        const result = musicaModel.validatemusicaToCreate(musica)
+        const result = musicaModel.validateMusicaToCreate(musica)
         if(!result.success){
             return res.status(400).json({
                 error: `Dados de Cadastro Inválido`,
@@ -13,7 +13,7 @@ const create = async (req, res) => {
         }
         const newmusica = await musicaModel.create(musica)
         return res.json({
-            success: `Usuário ${newmusica.id} criado com sucesso!`,
+            success: `Musica ${newmusica.id} criado com sucesso!`,
             musica: newmusica
         })
     } catch (error) {
