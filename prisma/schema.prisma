@@ -1,13 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
- //provider = "mysql"
- provider = "postgres"
+  //provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -19,15 +16,18 @@ model usuario {
 }
 
 model artista {
-  id       Int      @id @default(autoincrement())
-  name     String   @db.VarChar(250)
-  avatar   String   @db.Text
-  musicas  musica[] @relation("ArtistaMusicas")
+  id     Int      @id @default(autoincrement())
+  name   String   @db.VarChar(250)
+  avatar String   @db.Text
+  musica musica[]
 }
 
 model musica {
-  id         Int       @id @default(autoincrement())
-  name       String    @db.VarChar(250)
-  avatar     String    @db.Text
-  artistas   artista[] @relation("ArtistaMusicas")
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(250)
+  avatar    String   @db.Text
+  artistaID Int?
+  artista   artista? @relation(fields: [artistaID], references: [id], onUpdate: Restrict)
+
+  @@index([artistaID], map: "musica_artistaID_fkey")
 }
