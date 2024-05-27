@@ -15,19 +15,19 @@ model usuario {
   avatar String @db.Text
 }
 
-model artista {
+model Artista {
   id     Int      @id @default(autoincrement())
   name   String   @db.VarChar(250)
   avatar String   @db.Text
-  musica musica[]
+  musica Musica[]
 }
 
-model musica {
+model Musica {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(250)
   avatar    String   @db.Text
   artistaID Int?
-  artista   artista? @relation(fields: [artistaID], references: [id], onUpdate: Restrict)
+  artista   Artista? @relation(fields: [artistaID], references: [id], onUpdate: Restrict, map: "musica_artistaID_fk")
 
-  @@index([artistaID], map: "musica_artistaID_fkey")
+  @@index([artistaID], map: "musica_artistaID_index")
 }
