@@ -22,13 +22,12 @@ model artista {
   id       Int      @id @default(autoincrement())
   name     String   @db.VarChar(250)
   avatar   String   @db.Text
-  musicas  musica[] 
+  musicas  musica[] @relation("ArtistaMusicas")
 }
 
 model musica {
   id         Int       @id @default(autoincrement())
   name       String    @db.VarChar(250)
   avatar     String    @db.Text
-  artista   artista[] 
+  artistas   artista[] @relation("ArtistaMusicas")
 }
-

@@ -19,13 +19,12 @@ const musicaSchema = z.object({
     artista: z.array(z.number()).nonempty({
         message: 'O campo artista é obrigatório e deve conter pelo menos um ID de artista.'
     })
-})
+});
 
 const validateMusicaToCreate = (musica) => {
-    const partialmusicaSchema = musicaSchema.partial({id: true})
-    return partialmusicaSchema.safeParse(musica)
+    const partialMusicaSchema = musicaSchema.partial({ id: true });
+    return partialMusicaSchema.safeParse(musica);
 }
-
 const getAll = async () => {
     return await prisma.musica.findMany()
 }
