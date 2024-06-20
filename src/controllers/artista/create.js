@@ -1,6 +1,6 @@
 import artistaModel from '../../models/artistaModel.js';
 import zodErrorFormat from '../../helpers/zodErrorFormat.js';
-
+//hi
 const create = async (req, res) => {
     try {
         const artista = req.body;
